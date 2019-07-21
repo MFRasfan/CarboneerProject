@@ -80,7 +80,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         $("#tripdistance").val(distance / 1000);
       } else {
         window.alert("Directions request failed due to " + status);
-      }
+      };
       //Define Variables for AJAX call to Brigher Planet API
       var APIKey = "fbe9ed99-8402-469d-a1b7-b05ed17723ca";
    var APIDistance = distance;
@@ -117,7 +117,8 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
           var distanceTd = $("<td>").text(APIDistance/1000);
           var CO2EmittedTd = $("<td>").html("<b>" + parseFloat(response.decisions.co2_emission.description).toFixed(3) + "</b>");
 
-
+          var CO2Emitted = response.decisions.co2_emission.description.substr(0, 5);
+          var CO2EmittedTd = $("<td>").text(CO2Emitted);
           // Build list of fun offset ideas
           var offsetIdeasTd = $("<td>").html("Be vegan for " + "<b>" + parseFloat(response.equivalents.days_of_veganism).toFixed(3) + "</b>" + " days!" + "<br>" + "Recycle " + "<b>" + (response.equivalents.recycled_kgs_of_trash).toFixed(3) + "</b>" + " kgs of trash!" + "<br>" + "Convert " + "<b>" + parseFloat(response.equivalents.lightbulbs_to_CFLs_for_a_week).toFixed(3) + "</b>" + " lightbulbs into CFLs for a week!");
 
@@ -166,8 +167,7 @@ $(document).ready(function() {
       $("#vehicle-type").val(snapshot.val().type);
       $("#vehicle-year").val(snapshot.val().year);
       $("#vehicle-make").val(snapshot.val().make);
-      $("#vehicle-mode").val(snapshot.val().model);
-      $("#distance-units").val(snapshot.val().distance);
+      $("#vehicle-model").val(snapshot.val().model);
       $("#userstart").val(snapshot.val().start);
     });
 });
